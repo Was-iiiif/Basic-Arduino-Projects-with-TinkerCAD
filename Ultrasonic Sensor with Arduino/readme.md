@@ -23,8 +23,7 @@ This project demonstrates how to use an **ultrasonic sensor (HC-SR04)** with an 
 
 <ol type="i"><li>The trig pin sends out an ultrasonic pulse.</li>
 <li>The echo pin receives the reflected wave.</li>
-<li>The Arduino calculates the time taken and converts it to distance.</li>
-<li>The result is shown on the I2C LCD in centimeters.</li></ol>
+<li>The Arduino calculates the time taken and converts it to distance.</li></ol>
 
 ## ✅ Applications
 
