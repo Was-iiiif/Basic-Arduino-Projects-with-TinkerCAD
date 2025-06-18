@@ -17,10 +17,9 @@ This project demonstrates how to use an **ultrasonic sensor (HC-SR04)** with an 
 | Jumper Wires          | As needed |
 
 ## ⚙️ Circuit Diagram
+<a href="https://www.tinkercad.com/things/g3ARDLLDci6-ultrasonic-sensor-with-arduino"></a>
 
-> <a href="https://www.tinkercad.com/things/g3ARDLLDci6-ultrasonic-sensor-with-arduino"></a>
-
-##🧠 How It Works
+##🧠 <b>How It Works</b>
 
 <ol type="i"><li>The trig pin sends out an ultrasonic pulse.</li>
 <li>The echo pin receives the reflected wave.</li>
