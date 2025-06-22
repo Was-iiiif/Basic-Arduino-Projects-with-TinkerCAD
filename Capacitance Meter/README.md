@@ -1,4 +1,4 @@
-# 🧪 Capacitance Measurement Using Arduino
+# 🧪 Capacitance Meter
 
 This project allows you to **measure the capacitance** of an unknown capacitor using an Arduino UNO by timing how long it takes to charge through a known resistor.
 
