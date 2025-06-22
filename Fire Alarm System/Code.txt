@@ -1,0 +1,38 @@
+//Fire Alarm System
+
+float vout;
+float vout1;
+float temp;
+int gas;
+void setup()
+{
+  pinMode(A0, INPUT);
+  pinMode(A1, INPUT);
+  pinMode(7, OUTPUT);
+  pinMode(13, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  vout=analogRead(A1);
+  gas=analogRead(A0);
+  vout1=vout/1023*5000;
+  temp=(vout1-500)/10;
+  if(temp>=80)
+  {digitalWrite(13, HIGH);}
+  else
+  if(gas>=100)
+  {digitalWrite(7, HIGH);}
+  else
+  {digitalWrite(7, LOW);}
+  
+  Serial.print("Temp:");
+  Serial.print(temp);
+  Serial.print("    ");
+  Serial.print("Gas:");
+  Serial.print(gas);
+  Serial.println();
+  
+  delay(1000);
+}
