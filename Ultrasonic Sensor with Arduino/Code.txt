@@ -1,0 +1,31 @@
+
+//Initialization
+
+int trigPin=10;
+int echoPin=9;
+float distance;
+long time;
+void setup()
+{
+  pinMode(10, OUTPUT);
+  pinMode(9, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(10, LOW);
+  delayMicroseconds(2); //delay
+  digitalWrite(10, HIGH);
+  delayMicroseconds(10);//delay
+  digitalWrite(10, LOW);
+  time=pulseIn(9, HIGH);
+  distance=time*.0343*.5;//calculating distance
+  
+  Serial.print("Distance:");
+  Serial.print(distance);
+  Serial.println("cm");
+  
+  delay(500);
+   
+}
