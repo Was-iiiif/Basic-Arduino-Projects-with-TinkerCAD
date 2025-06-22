@@ -1,0 +1,19 @@
+// Light Intensity Measurement
+//
+
+int sensor;
+void setup()
+{
+  pinMode(A0, INPUT);
+  pinMode(9, OUTPUT);
+  Serial.begin(9600); 
+}
+
+void loop()
+{
+  sensor=analogRead(A0);
+  Serial.println(sensor);
+  int brightness = map(sensor, 0, 1023, 0, 255);
+  analogWrite(9, brightness);  
+  delay(100);
+}
