@@ -1,0 +1,46 @@
+int analogPin = A0;
+int chargePin = 8;
+int dischargePin = 9;
+int resistor = 10000; // in ohms
+
+unsigned long start;
+unsigned long elapsed;
+float microF;
+float nanoF;
+
+void setup() {
+  pinMode(chargePin, OUTPUT);
+  digitalWrite(chargePin, LOW);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Charge the capacitor
+  digitalWrite(chargePin, HIGH);
+  start = millis();
+  while (analogRead(analogPin) < 610) {}  // wait until ~3V
+
+  elapsed = millis() - start;
+
+  // Calculate capacitance
+  microF = ((float)elapsed / resistor) * 1000;
+  Serial.print("Time: ");
+  Serial.print(elapsed);
+  Serial.print(" ms\tCapacitance: ");
+  if (microF > 1.0) {
+    Serial.print(microF);
+    Serial.println(" uF");
+  } else {
+    nanoF = microF * 1000;
+    Serial.print(nanoF);
+    Serial.println(" nF");
+  }
+
+  // Discharge the capacitor
+  pinMode(dischargePin, OUTPUT);
+  digitalWrite(dischargePin, LOW);
+  delay(100); // ensure discharge
+  pinMode(dischargePin, INPUT);
+
+  delay(500); // wait before next reading
+}
