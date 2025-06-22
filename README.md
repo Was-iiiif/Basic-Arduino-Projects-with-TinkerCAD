@@ -5,4 +5,6 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Ultrasonic Sensor with Arduino to Measure Distance </li>
 <li> Fire Alarm System</li>
 <li> Light Intensity Measurement</li>
+<li> Password Protected Security System </li>
+<li> Simple Calculator</li>
 
