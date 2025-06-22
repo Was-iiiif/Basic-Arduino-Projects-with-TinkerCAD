@@ -1,0 +1,106 @@
+#include <LiquidCrystal.h>
+#include <Keypad.h>
+
+// LCD setup (RS, EN, D4, D5, D6, D7)
+LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
+
+// Keypad setup
+const byte ROWS = 4;
+const byte COLS = 4;
+
+char keys[ROWS][COLS] = 
+{
+  {'1', '2', '3', '+'},
+  {'4', '5', '6', '-'},
+  {'7', '8', '9', '*'},
+  {'C', '0', '=', '/'}
+};
+
+byte rowPins[ROWS] = {7, 6, 5, 4};  // connect to R1, R2, R3, R4
+byte colPins[COLS] = {3, 2, 1, 0};    // connect to C1, C2, C3, C4
+
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+// Variables
+String input = "";
+float num1 = 0, num2 = 0;
+char op = 0;
+bool opPressed = false;
+
+void setup() 
+{
+  lcd.begin(16, 2);
+  lcd.print("Arduino Calc");
+  delay(2000);
+  lcd.clear();
+  lcd.print("Enter number:");
+}
+
+void loop() 
+{
+  char key = keypad.getKey();
+
+  if (key) 
+  {
+    if (key >= '0' && key <= '9') 
+    {
+      input += key;
+      lcd.setCursor(0, 1);
+      lcd.print(input);
+    } 
+    else if (key == 'C') 
+    {
+      resetCalc();
+    } 
+    else if (key == '+' || key == '-' || key == '*' || key == '/') 
+    {
+      if (!opPressed && input.length() > 0) 
+      {
+        num1 = input.toFloat();
+        op = key;
+        opPressed = true;
+        input = "";
+        lcd.clear();
+        lcd.print("Op: ");
+        lcd.print(op);
+        delay(1000);
+        lcd.clear();
+        lcd.print("Enter 2nd no:");
+      }
+    } 
+    else if (key == '=' && opPressed && input.length() > 0) 
+    {
+      num2 = input.toFloat();
+      float result = calculate(num1, num2, op);
+      lcd.clear();
+      lcd.print("Result:");
+      lcd.setCursor(0, 1);
+      lcd.print(result);
+      delay(4000);
+      resetCalc();
+    }
+  }
+}
+
+float calculate(float a, float b, char oper) 
+{
+  switch (oper) 
+  {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/': return (b != 0) ? a / b : 0;
+    default: return 0;
+  }
+}
+
+void resetCalc() 
+{
+  input = "";
+  num1 = 0;
+  num2 = 0;
+  op = 0;
+  opPressed = false;
+  lcd.clear();
+  lcd.print("Enter number:");
+}
