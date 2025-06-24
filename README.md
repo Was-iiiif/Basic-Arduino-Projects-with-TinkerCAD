@@ -7,4 +7,8 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Light Intensity Measurement</li>
 <li> Password Protected Security System </li>
 <li> Simple Calculator</li>
+<li> Piano Using Arduino </li>
+<li> Capacitance Meter </li>
+<li> Digital Voltmeter </li>
+<li> Interfacing NeoPixel Strip </li>
 
