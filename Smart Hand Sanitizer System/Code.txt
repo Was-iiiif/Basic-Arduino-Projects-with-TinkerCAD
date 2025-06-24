@@ -1,0 +1,41 @@
+#include <Servo.h>
+
+const int trigPin = 8;
+const int echoPin = 9;
+Servo servo;
+
+void setup() {
+  Serial.begin(9600);
+  servo.attach(6);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.println("Smart Hand Sanitizer Ready...");
+}
+
+void loop() {
+  long duration, distance;
+
+  // Trigger ultrasonic pulse
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2); 
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10); 
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  // If hand detected
+  if (distance > 0 && distance <= 10) {
+    servo.write(90);     // Push pump
+    delay(500);          // Wait to dispense
+    servo.write(0);      // Reset position
+    delay(2000);         // Wait before next detection to avoid multiple triggers
+  }
+
+  delay(100);
+}
