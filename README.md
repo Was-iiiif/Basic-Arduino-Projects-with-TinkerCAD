@@ -11,4 +11,7 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Capacitance Meter </li>
 <li> Digital Voltmeter </li>
 <li> Interfacing NeoPixel Strip </li>
+<li> Smart Hand Sanitizer System </li>
+<li> Digital Thermometer </li>
+<li> Motion Detector using PIR </li>
 
