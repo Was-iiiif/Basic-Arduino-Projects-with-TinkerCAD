@@ -1,0 +1,41 @@
+void setup() {
+  pinMode(9, OUTPUT);   // Red
+  pinMode(10, OUTPUT);  // Green
+  pinMode(11, OUTPUT);  // Blue
+  pinMode(12, OUTPUT);  // Buzzer
+  pinMode(13, INPUT);   // PIR sensor input
+
+  RGB_color(0, 0, 0);
+  digitalWrite(12, LOW);
+}
+
+void loop() {
+  if (digitalRead(13) == HIGH) {
+    sirenEffect();              // Play siren sound
+    RGB_color(0, 0, 255);       // Blue when motion detected
+  } else {
+    RGB_color(255, 0, 255);     // Purple when idle
+  }
+
+  delay(200);
+}
+
+// RGB LED Color Function
+void RGB_color(int red, int green, int blue) {
+  analogWrite(9, red);
+  analogWrite(10, green);
+  analogWrite(11, blue);
+}
+
+// Siren Function: High-Frequency Sweep
+void sirenEffect() {
+  for (int freq = 1000; freq <= 2000; freq += 10) {
+    tone(12, freq);
+    delay(2);
+  }
+  for (int freq = 2000; freq >= 1000; freq -= 10) {
+    tone(12, freq);
+    delay(2);
+  }
+  noTone(12); // Stop sound
+}
