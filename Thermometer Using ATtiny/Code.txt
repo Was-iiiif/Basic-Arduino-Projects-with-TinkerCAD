@@ -1,0 +1,33 @@
+const int tempPin = A1;   // TMP36 analog output
+const int ledPin = 0;     // PB0 connected to LED
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int rawValue = analogRead(tempPin);
+  
+  // Convert raw value to millivolts (assuming 5V reference)
+  float voltage = (rawValue * 5000.0) / 1024.0; 
+  
+  // Convert to temperature in Celsius
+  float temperature = (voltage - 500.0) / 10.0;
+
+  if (temperature >= -40 && temperature <= 69) {
+    digitalWrite(ledPin, HIGH);
+    delay(100);
+    digitalWrite(ledPin, LOW);
+    delay(100);
+  } else if (temperature >= 70 && temperature <= 116) {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+  } else if (temperature >= 117 && temperature <= 238) {
+    digitalWrite(ledPin, HIGH);
+    delay(1000);
+    digitalWrite(ledPin, LOW);
+    delay(1000);
+  }
+}
