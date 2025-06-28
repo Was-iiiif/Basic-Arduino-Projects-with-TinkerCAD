@@ -1,0 +1,30 @@
+int button = 11;
+
+void setup() {
+  pinMode(8, OUTPUT);  // Red
+  pinMode(9, OUTPUT);  // Yellow
+  pinMode(10, OUTPUT); // Green
+  pinMode(button, INPUT_PULLUP);
+}
+
+void loop() {
+  int state =0;
+  state = digitalRead(button);
+
+  if (state == 1) {
+    // Pedestrian pressed the button
+    digitalWrite(10, LOW);  // Green off
+    digitalWrite(9, HIGH);  // Yellow
+    delay(2000);
+    digitalWrite(9, LOW);
+    digitalWrite(8, HIGH);  // Red
+    delay(5000);
+    digitalWrite(8, LOW);
+  } else {
+    // Normal traffic flow
+    digitalWrite(10, HIGH);
+    digitalWrite(9, LOW);
+    digitalWrite(8, LOW);
+ 
+  }
+}
