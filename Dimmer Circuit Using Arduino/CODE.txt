@@ -1,0 +1,19 @@
+// C++ code
+//
+float read;
+float write;
+void setup()
+{
+  pinMode(9, OUTPUT);
+  pinMode(A0, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  read=analogRead(0);
+  write=(read*255.00)/1023.00;
+  analogWrite(9, write);
+  Serial.println(write);
+
+}
