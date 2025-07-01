@@ -1,0 +1,21 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(0, 1, 2, 3, 4, 5);
+
+// C++ code
+//
+void setup()
+{
+  lcd.begin(16, 2);
+  lcd.print("HELLO");
+  lcd.setCursor(0, 1);
+  lcd.print("I'M WASIF");
+  
+}
+
+void loop()
+{
+  lcd.setCursor(14, 1);
+  lcd.print(millis() /1000);
+  delay(100);
+ 
+}
