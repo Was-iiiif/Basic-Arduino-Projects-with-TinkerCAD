@@ -14,4 +14,8 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Smart Hand Sanitizer System </li>
 <li> Digital Thermometer </li>
 <li> Motion Detector using PIR </li>
+<li> Thermometer Using ATtiny85 </li>
+<li> Traffic Light </li>
+<li> Dimmer Circuit Using Arduino </li>
+<li> Interfacing Photodiode </li>
 
