@@ -1,0 +1,73 @@
+#include <LiquidCrystal.h>
+
+#include <Servo.h>
+
+#define IR1 9;
+#define IR2 10; 
+#define IR_ENTRY 8; 
+#define IR_EXIT 11;
+
+Servo s1, s2;
+int pos=0;
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+void setup()
+{
+  s1.attach(12);
+  s2.attach(13);
+  s1.write(pos);
+  s2.write(pos);
+  pinMode(9, INPUT);
+  pinMode(10, INPUT);
+  pinMode(8, INPUT);
+  pinMode(11, INPUT);
+  
+  lcd.begin(16, 2);
+  lcd.print(" Smart Parking");
+  lcd.setCursor(0, 1);
+  lcd.print("    System");
+  delay(2000);
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Slot 1= A");
+  lcd.setCursor(0, 1);
+  lcd.print("Slot 2= A");
+  delay(2000);
+
+}
+
+void loop()
+{
+  if(digitalRead(9)==HIGH)
+  {
+  lcd.setCursor(0, 0);
+  lcd.print("Slot 1= NA");    
+  }
+  else
+  {
+  lcd.setCursor(0, 0);
+  lcd.print("Slot 1= A");
+  }
+  if(digitalRead(10)==HIGH)
+  {
+  lcd.setCursor(0, 1);
+  lcd.print("Slot 2= NA");    
+  }
+  else
+  {
+  lcd.setCursor(0, 1);
+  lcd.print("Slot 2= A");
+  }
+  
+  if(digitalRead(8)==HIGH)
+  	s1.write(pos+90);
+  
+  else
+    s1. write(pos);
+    
+  if(digitalRead(11)==HIGH)
+  	s2.write(pos+90);
+  
+  else
+    s2. write(pos);
+
+}
