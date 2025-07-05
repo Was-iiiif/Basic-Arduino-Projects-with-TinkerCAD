@@ -18,4 +18,8 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Traffic Light </li>
 <li> Dimmer Circuit Using Arduino </li>
 <li> Interfacing Photodiode </li>
+<li> LCD 16X2 Display with ATtiny85 </li>
+<li> LED Flowing Lights </li>
+<li> Smart Parking System </li>
+<li> Breathing LED </li>
 
