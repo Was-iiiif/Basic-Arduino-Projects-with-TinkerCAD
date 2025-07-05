@@ -1,0 +1,74 @@
+#include <Servo.h>
+
+// Servo objects
+Servo servoX;  // horizontal
+Servo servoY;  // vertical
+
+// LDR pins
+const int LDR_TL = A2;
+const int LDR_TR = A1;
+const int LDR_BL = A3;
+const int LDR_BR = A0;
+
+// Initial servo positions
+int posX = 90;
+int posY = 90;
+
+// Tuning values
+const int threshold = 50;  // Light sensitivity threshold
+const int stepSize = 5;    // Step movement per loop (can be 1–10)
+
+void setup() {
+  servoX.attach(9);
+  servoY.attach(10);
+
+  servoX.write(posX);
+  servoY.write(posY);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Read LDR values
+  int tl = analogRead(LDR_TL);
+  int tr = analogRead(LDR_TR);
+  int bl = analogRead(LDR_BL);
+  int br = analogRead(LDR_BR);
+
+  // Average top, bottom, left, right
+  int topAvg = (tl + tr) / 2;
+  int bottomAvg = (bl + br) / 2;
+  int leftAvg = (tl + bl) / 2;
+  int rightAvg = (tr + br) / 2;
+
+  int verticalDiff = topAvg - bottomAvg;
+  int horizontalDiff = leftAvg - rightAvg;
+
+  // Debug monitor
+  Serial.print("Top: "); Serial.print(topAvg);
+  Serial.print(" | Bottom: "); Serial.print(bottomAvg);
+  Serial.print(" | Left: "); Serial.print(leftAvg);
+  Serial.print(" | Right: "); Serial.println(rightAvg);
+
+  // Vertical servo control (Y-axis)
+  if (abs(verticalDiff) > threshold) {
+    if (verticalDiff > 0) {
+      posY = constrain(posY + stepSize, 0, 180); // Move up
+    } else {
+      posY = constrain(posY - stepSize, 0, 180); // Move down
+    }
+    servoY.write(posY);
+  }
+
+  // Horizontal servo control (X-axis)
+  if (abs(horizontalDiff) > threshold) {
+    if (horizontalDiff > 0) {
+      posX = constrain(posX - stepSize, 0, 180); // Move left
+    } else {
+      posX = constrain(posX + stepSize, 0, 180); // Move right
+    }
+    servoX.write(posX);
+  }
+
+  delay(250); // Delay for smoother movement
+}
