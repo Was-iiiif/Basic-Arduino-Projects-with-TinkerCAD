@@ -1,0 +1,43 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 9         
+#define NUMPIXELS 7   
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  pixels.begin(); 
+}
+
+void loop() {
+  
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(255, 0, 0)); // Red
+    pixels.show();
+    delay(200);
+  }
+
+  delay(500);
+
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(0, 255, 0)); // Green
+    pixels.show();
+    delay(200);
+  }
+
+  delay(500);
+
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, pixels.Color(0, 0, 255)); // Blue
+    pixels.show();
+    delay(200);
+  }
+
+  delay(500);
+
+  for (int i = 0; i < NUMPIXELS; i++) {
+    pixels.setPixelColor(i, 0); // Off
+  }
+  pixels.show();
+  delay(500);
+}
