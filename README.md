@@ -24,4 +24,4 @@ This repository contains some basic Arduino projects simulated on TinkerCAD<br>
 <li> Breathing LED </li>
 <li> Interfacing NeoPixel Jewel</li>
 <li> Digital Solar Tracker</li>
-
+<li> PlantBuddy </li>
